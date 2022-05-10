@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TonguesComponent } from './tongues.component';
+import { SpokenLanguagesComponent } from './spoken-languages.component';
 
-describe('TonguesComponent', () => {
-  let component: TonguesComponent;
-  let fixture: ComponentFixture<TonguesComponent>;
+describe('SpokenLanguagesComponent', () => {
+  let component: SpokenLanguagesComponent;
+  let fixture: ComponentFixture<SpokenLanguagesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TonguesComponent ]
+      declarations: [ SpokenLanguagesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TonguesComponent);
+    fixture = TestBed.createComponent(SpokenLanguagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

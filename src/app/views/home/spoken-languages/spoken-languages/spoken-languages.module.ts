@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TonguesComponent } from './tongues.component';
+import { SpokenLanguagesComponent } from './spoken-languages.component';
 
 
 
 @NgModule({
   declarations: [
-    TonguesComponent
+    SpokenLanguagesComponent
   ],
   imports: [
     CommonModule
   ]
 })
-export class TonguesModule { }
+export class SpokenLanguagesModule { }
