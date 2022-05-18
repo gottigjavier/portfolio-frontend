@@ -13,14 +13,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    MatCardModule,
-    SharedModule
+    MatCardModule
   ],
   exports:[
     AboutComponent
-  ],
-  providers: [
-    DataService
   ]
 })
 export class AboutModule { }
