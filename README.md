@@ -34,6 +34,6 @@ La capa de servicio se diseñó en forma similar a la del backend, es decir, se 
 Por el momento se creó otra clase genérica para manejar la autenticacón de login pero en el futuro se podrá optar por dejar solo DataService.  
 #### Iconos
 
-Por el momento los íconos para edición se cargan desde [Getbootstrap] (https://icons.getbootstrap.com/)
+Por el momento los íconos para edición se cargan desde [Getbootstrap](https://icons.getbootstrap.com/)
 También se bajaron los .svg en una carpeta para ser invocados o para ser guardados en un repositorio en línea y ser cargados desde allí como se hace con los íconos de tecnologías.
 
