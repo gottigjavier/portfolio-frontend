@@ -31,6 +31,8 @@ export class TechnologiesComponent<T> implements OnInit {
         console.log(this.scrWidth);
   }
   
+  public editMode: boolean= false;
+  
   constructor(
     private dataService: DataService<T>,
     private bindingService: BindingService<T>) {
@@ -44,6 +46,10 @@ export class TechnologiesComponent<T> implements OnInit {
         techLevel: 0,
         techIndex: 0
       }
+
+      this.bindingService.dataEmitter.subscribe((data: boolean) =>{
+        this.editMode= data;
+      })
   }
   
   ngOnInit(): void {

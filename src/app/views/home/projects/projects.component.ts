@@ -15,10 +15,15 @@ export class ProjectsComponent<T> implements OnInit {
   public projList: Array<MyProject>=[];
   private endPoint: string= "my-project/list";
 
+  public editMode: boolean= false;
+
   constructor(
     private dataService: DataService<T>,
     private bindingService: BindingService<T>
     ) {
+      this.bindingService.dataEmitter.subscribe((data: boolean) =>{
+        this.editMode= data;
+      })
     }
     
     ngOnInit(): void {
