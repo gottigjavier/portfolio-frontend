@@ -21,6 +21,16 @@ export class ProjectsComponent<T> implements OnInit {
   public projListTechShown: Array<MyProject> = [];
   private endPoint: string = "my-project/list";
   public techListShown: Array<Technology> = [];
+  private proj: MyProject={
+    projId:0,
+    projName:"",
+    projDescription:"",
+    projUrl:"",
+    projShow: true,
+    projIndex:0,
+    techList:[]
+  }
+
 
   public editMode: boolean = false;
 
@@ -68,23 +78,30 @@ export class ProjectsComponent<T> implements OnInit {
             if (data.projId==proj.projId) {
               proj = data;
             }
+            this.dataService.getAll<Array<MyProject>>(this.endPoint).subscribe(response => {
+              response.sort((a, b) => a.projIndex - b.projIndex);
+              this.projList = response;
+            })
             return this.projList;
-          })
-          this.dataService.getAll<Array<MyProject>>(this.endPoint).subscribe(response => {
-            response.sort((a, b) => a.projIndex - b.projIndex);
-            this.projList = response;
           })
         //}
     })
   };
 
-  openEdit(i: number) {
-    this.popupBinding<MyProject>(this.projList[i]);
+  
+  openEditOneProj(i: number) {
+    this.proj= this.projList.find(elem=> elem.projId== i) || this.proj;
+    this.popupBinding<MyProject>(this.proj);
     this.techListBinding<Array<Technology>>(this.techListShown);
     $("#editProj").modal("show");
   }
-
+  
   openNewProj(){
+    this.techListBinding<Array<Technology>>(this.techListShown);
+    $("#newProj").modal("show");
+  }
+  
+  openEditProjSet(){
 
   }
 
