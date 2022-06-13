@@ -4,6 +4,7 @@ import { Technology } from 'src/app/models/technology.model';
 import { ModeBindingService } from 'src/app/services/binding-services/mode-binding.service';
 import { PopupBindingService } from 'src/app/services/binding-services/popup-binding.service';
 import { ProjBindingService } from 'src/app/services/binding-services/proj-binding.service';
+import { ProjListBindingService } from 'src/app/services/binding-services/proj-list-binding-service';
 import { TechBindingService } from 'src/app/services/binding-services/tech-binding.service';
 import { TechListBindingService } from 'src/app/services/binding-services/tech-list-binding.service';
 import { DataService } from 'src/app/services/data-services/data.service';
@@ -40,22 +41,13 @@ export class ProjectsComponent<T> implements OnInit {
     private techBindingService: TechBindingService<T>,
     private projBindingService: ProjBindingService<T>,
     private popupBindingService: PopupBindingService<T>,
-    private techListBindingService: TechListBindingService<T>
+    private techListBindingService: TechListBindingService<T>,
+    private projListBindingService: ProjListBindingService<T>
   ) {
     this.modeBindingService.dataEmitter.subscribe((data: boolean) => {
       this.editMode = data;
     })
     
-    /* this.projBindingService.dataEmitter.subscribe((data: MyProject) => {
-      if(data){
-          this.projList.forEach(proj => {
-            if (data.projId==proj.projId) {
-              proj = data;
-            }
-          })
-          this.ngOnInit();
-        }
-    }) */
 
     this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>) =>{
       data.sort((a, b) => a.techIndex - b.techIndex);
@@ -73,7 +65,7 @@ export class ProjectsComponent<T> implements OnInit {
       })
     })
     this.projBindingService.dataEmitter.subscribe((data: MyProject) => {
-      //if(data){
+      if(data){
           this.projList.forEach(proj => {
             if (data.projId==proj.projId) {
               proj = data;
@@ -84,7 +76,13 @@ export class ProjectsComponent<T> implements OnInit {
             })
             return this.projList;
           })
-        //}
+        }
+    })
+    this.projListBindingService.dataEmitter.subscribe((data: Array<MyProject>)=>{
+      if(data){
+        data.sort((a: any, b: any) => a.projIndex - b.projIndex);
+        this.projList=data;
+      }
     })
   };
 
@@ -106,7 +104,8 @@ export class ProjectsComponent<T> implements OnInit {
   }
 
   openDeleteProj(){
-
+    $("#deleteProj").modal("show");
+    this.popupBinding<Array<MyProject>>(this.projList);
   }
 
   popupBinding<T>(data: T) {
