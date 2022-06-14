@@ -51,9 +51,21 @@ export class AboutComponent<T> implements OnInit {
     }) 
   };
   
-  openEdit(){
+  openEditAbout(){
     this.popupBinding<About>(this.about);
     $("#editAbout").modal("show");
+  }
+
+  openNewAbout(){
+
+  }
+  
+  openDeleteAbout(){
+
+  }
+
+  openShownAbout(){
+
   }
   
   popupBinding<T>(data: T){
