@@ -38,6 +38,8 @@ export class TechnologiesComponent<T> implements OnInit {
 
   public editMode: boolean = false;
 
+  private list: Array<Technology>=[];
+
   constructor(
     private dataService: DataService<T>,
     private modeBindingService: ModeBindingService<T>,
@@ -58,6 +60,7 @@ export class TechnologiesComponent<T> implements OnInit {
       techShow: false
     }
 
+
     this.modeBindingService.dataEmitter.subscribe((data: boolean) => {
       this.editMode = data;
     })
@@ -76,10 +79,11 @@ export class TechnologiesComponent<T> implements OnInit {
   ngOnInit(): void {
     this.dataService.getAll<Array<Technology>>(this.techListEndPoint).subscribe(response => {
       console.log("tech -> ", response);
-      response.sort((a, b) => a.techIndex - b.techIndex);
+      this.list= Object.values(response);
+      this.list.sort((a, b) => a.techIndex - b.techIndex);
       console.log("width  ", window.innerWidth)
-      this.techList = response;
-      this.techListShown = this.techList.filter(elem => elem.techShow==true);
+      this.techList = this.list;
+      this.techListShown = this.list.filter((elem: Technology) => elem.techShow==true);
       this.techListBinding<Array<Technology>>(this.techList);
       this.getScreenSize();
       this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>) => {

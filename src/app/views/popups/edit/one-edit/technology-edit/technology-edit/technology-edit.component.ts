@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Technology } from 'src/app/models/technology.model';
 import { PopupBindingService } from 'src/app/services/binding-services/popup-binding.service';
 import { TechBindingService } from 'src/app/services/binding-services/tech-binding.service';
+import { TechListBindingService } from 'src/app/services/binding-services/tech-list-binding.service';
 import { DataService } from 'src/app/services/data-services/data.service';
 
 declare var $ : any;
@@ -15,6 +16,7 @@ declare var $ : any;
 export class TechnologyEditComponent<T>{
 
   public tech: Technology;
+  private techList: Array<Technology>=[];
   
   private techUpdateEndPoint: string="technology/update";
 
@@ -32,7 +34,8 @@ export class TechnologyEditComponent<T>{
     private fb: FormBuilder,
     private dataService: DataService<T>,
     private popupBindingService: PopupBindingService<Technology>,
-    private techBindingService: TechBindingService<T>
+    private techBindingService: TechBindingService<T>,
+    private techListBindingService: TechListBindingService<Technology>
   ) {
     this.tech={
     techId: 0,
@@ -63,6 +66,8 @@ export class TechnologyEditComponent<T>{
         window.alert("Error: Not saved");
         return
       }
+      this.techList= Object.values(resp.body);
+      this.techListBinding<Array<Technology>>(this.techList);
       this.techBinding<Technology>(this.tech);
     })
     this.closePopup();
@@ -77,6 +82,10 @@ export class TechnologyEditComponent<T>{
 
   techBinding<T>(data: T) {
     this.techBindingService.setData<T>(data);
+  }
+
+  techListBinding<T>(data: T) {
+    this.techListBindingService.setData<T>(data);
   }
 
 }

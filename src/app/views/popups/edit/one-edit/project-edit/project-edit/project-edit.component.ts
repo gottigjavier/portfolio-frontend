@@ -118,16 +118,16 @@ export class ProjectEditComponent<T> {
       if (!resp) {
         alert('Error: Not saved');
       }else{
-        this.proj=resp;
+        this.proj=resp.body;
+        this.projBinding<MyProject>(this.proj);
       }
     });
-    this.projBinding<MyProject>(this.proj);
     this.closePopup();
     this.closePopup();
   }
   
   closePopup() {
-    this.projBinding<MyProject>(this.proj);
+    //this.projBinding<MyProject>(this.proj);
     //this.popupForm.reset();
     $('#editProj').modal('hide');
   }

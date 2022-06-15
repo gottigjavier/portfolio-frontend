@@ -40,7 +40,7 @@ export class AboutEditComponent<T>{
     }
 
     this.popupBindingService.dataEmitter.subscribe((data: About) =>{
-      this.about= data;
+      this.about= data || this.about;
     })
   }
   

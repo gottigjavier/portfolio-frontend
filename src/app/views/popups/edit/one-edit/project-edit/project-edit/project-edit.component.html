@@ -11,28 +11,28 @@
                 <form class="p-3" [formGroup]="popupForm" (ngSubmit)="onSubmit()">
                     <br />
                     <div class="mb-3">
-                        <label for="pname" class="form-label">Project Name</label>
-                        <input id="pname" class="form-control" formControlName="projName" value={{proj.projName}}>
+                        <label for="pename" class="form-label">Project Name</label>
+                        <input id="pename" class="form-control" formControlName="projName" value={{proj.projName}}>
                     </div>
                     <div class="mb-3">
-                        <label for="pdesc" class="form-label">Project Description</label>
-                        <input id="pdesc" class="form-control" type="text" value={{proj.projDescription}} formControlName="projDescription">
+                        <label for="pedesc" class="form-label">Project Description</label>
+                        <input id="pedesc" class="form-control" type="text" value={{proj.projDescription}} formControlName="projDescription">
                     </div>
                     <div class="mb-3">
-                        <label for="purl" class="form-label">Project Url</label>
-                        <input id="purl" class="form-control" value={{proj.projUrl}} formControlName="projUrl">
+                        <label for="peurl" class="form-label">Project Url</label>
+                        <input id="peurl" class="form-control" value={{proj.projUrl}} formControlName="projUrl">
                     </div>
                     <div class="text-center">
                         <label for="projIndex"><b>Order of Apperance :</b></label>
-                        <input class="proj-index-box" value={{proj.projIndex}} type="number" min="1" max="99" formControlName="projIndex">
+                        <input id="projIndex" class="proj-index-box" value={{proj.projIndex}} type="number" min="1" max="99" formControlName="projIndex">
                     </div>
                     <div class="mb-3">
                         <label for="techSelect" class="form-label">Select Technologies</label>
-                        <div class="grid-container">
+                        <div id="techSelect" class="grid-container">
                             <div class="row">
                                 <div class="tech">
                                     <label for="techshownlist"><b>Shown Techs</b></label>
-                                    <div id="techshownlist" *ngFor="let techTrue of techListTrue; index as i">
+                                    <div name="techshownlist" *ngFor="let techTrue of techListTrue">
                                         <input id="techTrue{{techTrue.techId}}" type="checkbox" [value]="techTrue.techId" checked
                                         (change)="onCheckboxChange($event)"><span class="ms-1">{{techTrue.techName}}</span>
                                     </div>
@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="tech">
                                     <label for="technotsownlist"><b>Not Shown Techs</b></label>
-                                    <div id="technoshownlist" *ngFor="let techFalse of techListFalse; index as i">
+                                    <div name="technoshownlist" *ngFor="let techFalse of techListFalse">
                                         <input id="techFalse{{techFalse.techId}}" type="checkbox" [value]="techFalse.techId" (change)="onCheckboxChange($event)" ><span class="ms-1">{{techFalse.techName}}</span>
                                     </div>
                                 </div>

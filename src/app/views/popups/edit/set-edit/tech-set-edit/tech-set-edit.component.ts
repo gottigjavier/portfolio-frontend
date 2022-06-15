@@ -17,6 +17,7 @@ export class TechSetEditComponent<T> implements OnInit {
   private techListEndPoint: string="technology/list";
   private techUpdateEndPoint: string="technology/update/list";
 
+  private list: Array<Technology>=[];
   public techListAll: Array<Technology>=[];
   public techListTrue: Array<Technology>=[];
   public techListFalse: Array<Technology>=[];
@@ -68,8 +69,9 @@ export class TechSetEditComponent<T> implements OnInit {
     private techListBindingService: TechListBindingService<T>
   ) {
     this.service.getAll<Array<Technology>>(this.techListEndPoint).subscribe(response =>{
-      response.sort((a, b) => a.techIndex - b.techIndex);
-      this.techListAll=response;
+      this.list= Object.values(response);
+      this.list.sort((a, b) => a.techIndex - b.techIndex);
+      this.techListAll=this.list;
       this.techListTrue= this.techListAll.filter(elm => elm.techShow);
       this.techListFalse= this.techListAll.filter(elm => !elm.techShow);
     })
@@ -78,7 +80,7 @@ export class TechSetEditComponent<T> implements OnInit {
     this.setFormArray= this.setForm.get('setFormArray') as FormArray;
 
     this.setForm= this.fb.group({
-      techList: this.fb.array([])
+      setList: this.fb.array([])
     })
 
   }
@@ -98,8 +100,9 @@ export class TechSetEditComponent<T> implements OnInit {
             if(!resp){
               alert("Error: Not saved");
             }else{
-              resp.sort((a:any, b:any) => a.techIndex - b.techIndex);
-              this.techListAll= resp;
+              this.list= Object.values(resp.body);
+              this.list.sort((a:any, b:any) => a.techIndex - b.techIndex);
+              this.techListAll= this.list;
               this.techListTrue= this.techListAll.filter(elm => elm.techShow);
               this.techListFalse= this.techListAll.filter(elm => !elm.techShow);
             }

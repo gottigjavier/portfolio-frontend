@@ -12,19 +12,19 @@
                     <br />
                     <div class="mb-3">
                         <label for="fname" class="form-label">First Name</label>
-                        <input id="fname" class="form-control" formControlName="firstName" value={{about.firstName}}>
+                        <input id="fname" class="form-control" formControlName="firstName">
                     </div>
                     <div class="mb-3">
                         <label for="lname" class="form-label">Last Name</label>
-                        <input id="lname" class="form-control" type="text" value={{about.lastName}} formControlName="lastName">
+                        <input id="lname" class="form-control" type="text" formControlName="lastName">
                     </div>
                     <div class="mb-3">
                         <label for="about-description" class="form-label">About Description</label>
-                        <textarea class="form-control" formControlName="shortExplanation" value={{about.shortExplanation}} id="about-description" rows="3"></textarea>
+                        <textarea class="form-control" formControlName="shortExplanation" id="about-description" rows="3"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image-url" class="form-label">Image URL</label>
-                        <input id="image-url" class="form-control" type="text" value={{about.photoUrl}} formControlName="photoUrl">
+                        <input id="image-url" class="form-control" type="text" formControlName="photoUrl">
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-success m-2" type="submit">
