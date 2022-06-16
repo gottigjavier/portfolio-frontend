@@ -51,7 +51,7 @@ export class AboutCreateComponent<T> {
       if(!resp){
         alert("Error: Not saved")
       }else{
-        this.list= Object.values(resp.body);
+        this.list= Object.values(resp.body); // From ResponseEntity
         this.aboutListBinding<Array<About>>(this.list);
       }
     })

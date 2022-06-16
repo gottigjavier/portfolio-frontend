@@ -1,24 +1,23 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AboutListBindingService<T> {
-
   data: any;
 
   @Output()
   dataEmitter = new EventEmitter<T>();
 
   setData<T>(newData: T) {
-      this.data = newData;
-      this.updatesData(this.data);
+    this.data = newData;
+    this.updatesData(this.data);
   }
 
   // Emitimos los cambio de this.data
   updatesData(data: T) {
-      this.dataEmitter.emit(data);
+    this.dataEmitter.emit(data);
   }
 
-  constructor() { }
+  constructor() {}
 }

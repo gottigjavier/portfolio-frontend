@@ -68,13 +68,13 @@ export class TechSetEditComponent<T> implements OnInit {
     private service: DataService<T>,
     private techListBindingService: TechListBindingService<T>
   ) {
-    this.service.getAll<Array<Technology>>(this.techListEndPoint).subscribe(response =>{
+    /* this.service.getAll<Array<Technology>>(this.techListEndPoint).subscribe(response =>{
       this.list= Object.values(response);
       this.list.sort((a, b) => a.techIndex - b.techIndex);
       this.techListAll=this.list;
       this.techListTrue= this.techListAll.filter(elm => elm.techShow);
       this.techListFalse= this.techListAll.filter(elm => !elm.techShow);
-    })
+    }) */
 
     this.setForm=this.fb.group({setFormArray: this.fb.array([])});
     this.setFormArray= this.setForm.get('setFormArray') as FormArray;
@@ -86,6 +86,12 @@ export class TechSetEditComponent<T> implements OnInit {
   }
 
   ngOnInit(): void {
+    this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>)=>{
+      this.techListAll= data;
+      this.techListAll.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+      this.techListTrue= this.techListAll.filter(elm => elm.techShow);
+      this.techListFalse= this.techListAll.filter(elm => !elm.techShow);
+    })
   }
 
   setSubmit(){
@@ -101,22 +107,21 @@ export class TechSetEditComponent<T> implements OnInit {
               alert("Error: Not saved");
             }else{
               this.list= Object.values(resp.body);
-              this.list.sort((a:any, b:any) => a.techIndex - b.techIndex);
+              this.list.sort((a:Technology, b: Technology): number => a.techIndex - b.techIndex);
               this.techListAll= this.list;
               this.techListTrue= this.techListAll.filter(elm => elm.techShow);
               this.techListFalse= this.techListAll.filter(elm => !elm.techShow);
+              this.techListBinding<Array<Technology>>(this.techListAll);
             }
           })
         })
       }
-      this.techListBinding<Array<Technology>>(this.techListAll);
-      this.closePopup();
       this.closePopup();
     }
     
     
     closePopup(){
-    this.techListBinding<Array<Technology>>(this.techListAll);
+    //this.techListBinding<Array<Technology>>(this.techListAll);
     $("#editTechSet").modal("hide");
   }
 

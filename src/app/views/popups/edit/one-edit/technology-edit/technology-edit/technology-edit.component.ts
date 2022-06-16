@@ -52,6 +52,10 @@ export class TechnologyEditComponent<T>{
       this.tech= data;
     })
 
+    this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>)=>{
+      this.techList= data;
+    })
+
   }
 
   onSubmit(){
@@ -65,17 +69,23 @@ export class TechnologyEditComponent<T>{
       if(!resp){
         window.alert("Error: Not saved");
         return
+      }else{
+        this.tech= resp.body;
+        this.techBinding<Technology>(this.tech);
+        this.techList.forEach(elem=>{
+          if(elem.techId==this.tech.techId){
+            elem= this.tech;
+            return;
+          }
+        })
+        this.techListBinding<Array<Technology>>(this.techList);
       }
-      this.techList= Object.values(resp.body);
-      this.techListBinding<Array<Technology>>(this.techList);
-      this.techBinding<Technology>(this.tech);
     })
-    this.closePopup();
     this.closePopup();
   }
 
   closePopup(){
-    this.techBinding<Technology>(this.tech);
+    this.techListBinding<Array<Technology>>(this.techList);
     //this.popupForm.reset();
     $("#editTech").modal("hide");
   }

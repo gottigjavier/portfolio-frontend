@@ -80,15 +80,15 @@ export class TechnologiesComponent<T> implements OnInit {
     this.dataService.getAll<Array<Technology>>(this.techListEndPoint).subscribe(response => {
       console.log("tech -> ", response);
       this.list= Object.values(response);
-      this.list.sort((a, b) => a.techIndex - b.techIndex);
+      this.list.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
       console.log("width  ", window.innerWidth)
       this.techList = this.list;
       this.techListShown = this.list.filter((elem: Technology) => elem.techShow==true);
       this.techListBinding<Array<Technology>>(this.techList);
       this.getScreenSize();
       this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>) => {
-        data.sort((a, b) => a.techIndex - b.techIndex);
-        this.techListShown = data.filter(elem => elem.techShow==true);
+        data.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+        this.techListShown = data.filter((elem: Technology) => elem.techShow==true) || [];
       })
     })
   };
@@ -103,7 +103,7 @@ export class TechnologiesComponent<T> implements OnInit {
  */
 
   openTechSet() {
-    //$("#newTech").modal("show");
+    this.techListBinding<Array<Technology>>(this.techList);
     $("#editTechSet").modal("show");
   }
 
@@ -112,11 +112,12 @@ export class TechnologiesComponent<T> implements OnInit {
   }
 
   openEdit(i: number) {
-    this.techList.forEach(elem=>{
+    this.tech= this.techList.find((elem: Technology)=> elem.techId==i) || this.tech;
+    /* this.techList.forEach(elem=>{
       if(elem.techId==i){
         this.tech= elem;
       }
-    })
+    }) */
     this.popupBinding<Technology>(this.tech);
     $("#editTech").modal("show");
   }
