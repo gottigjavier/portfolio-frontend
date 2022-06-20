@@ -30,13 +30,6 @@ export class ExperienceComponent<T> implements OnInit {
         this.editMode= data;
       })
 
-      this.jobListBindingService.dataEmitter.subscribe((data: Array<JobExperience>) =>{
-        this.jobList= data;
-        if(Array.isArray(this.jobList)){
-          this.jobList.sort((a: JobExperience, b: JobExperience): number => a.jobIndex - b.jobIndex);
-        }
-      })
-
     }
 
   ngOnInit(): void {
@@ -50,6 +43,13 @@ export class ExperienceComponent<T> implements OnInit {
       }else{
         window.alert(`Error: ${response.statusCode}`);
       }
+      })
+
+      this.jobListBindingService.dataEmitter.subscribe((data: Array<JobExperience>) =>{
+        this.jobList= data;
+        if(Array.isArray(this.jobList)){
+          this.jobList.sort((a: JobExperience, b: JobExperience): number => a.jobIndex - b.jobIndex);
+        }
       })
   }
 

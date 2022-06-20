@@ -109,7 +109,7 @@ export class TechnologiesComponent<T> implements OnInit {
 
   openEdit(tech: Technology) {
     console.log("edint one techhhh ", tech)
-    //this.tech= this.techList.find((elem: Technology)=> elem.techId==i) || this.tech;
+    this.techListBinding<Array<Technology>>(this.techList);
     this.techBinding<Technology>(tech);
     $("#editTech").modal("show");
   }

@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MyProject } from 'src/app/models/my-project.model';
 import { Technology } from 'src/app/models/technology.model';
-import { PopupBindingService } from 'src/app/services/binding-services/popup-binding.service';
 import { ProjBindingService } from 'src/app/services/binding-services/proj-binding.service';
-import { TechListBindingService } from 'src/app/services/binding-services/tech-list-binding.service';
+import { ProjTechListBindingService } from 'src/app/services/binding-services/proj-tech-list-binding.service';
 import { DataService } from 'src/app/services/data-services/data.service';
 
 declare var $: any;
@@ -14,7 +13,7 @@ declare var $: any;
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.css'],
 })
-export class ProjectEditComponent<T> {
+export class ProjectEditComponent<T> implements OnInit{
   
   public proj: MyProject;
 
@@ -35,8 +34,7 @@ export class ProjectEditComponent<T> {
   };
 
   private projUpdateEndPoint: string = 'my-project/update';
-  private projListEndPoint: string = 'my-project/list';
-
+  
   popupForm: FormGroup;
   techFormArray: FormArray;
 
@@ -58,8 +56,7 @@ export class ProjectEditComponent<T> {
     private fb: FormBuilder,
     private dataService: DataService<T>,
     private projBindingService: ProjBindingService<MyProject>,
-    //private popupBindingService: PopupBindingService<MyProject>,
-    private techListBindingService: TechListBindingService<Array<Technology>>
+    private projTechListBindingService: ProjTechListBindingService<Array<Technology>>
   ) {
     this.proj = {
       projId: 0,
@@ -86,13 +83,16 @@ export class ProjectEditComponent<T> {
       techList: this.fb.array([]),
     });
 
+  } //end constructor
+
+  ngOnInit(): void {
     this.projBindingService.dataEmitter.subscribe((data: MyProject) => {
       this.proj = data;
     });
 
     // to create the grid with used and unused techs for the project
-    this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>) => {
-      this.techListShown = Object.values(data) || [];
+    this.projTechListBindingService.dataEmitter.subscribe((data: Array<Technology>) => {
+      this.techListShown = data || [];
       if(this.proj.techList.length>0){
         this.techListTrue = this.proj.techList.filter((elem: Technology) => elem.techShow==true) || [];
       }
@@ -106,10 +106,8 @@ export class ProjectEditComponent<T> {
         }
       }
     })
+  }
 
-  } //end constructor
-
-  
   onSubmit() {
     this.proj.projName= this.popupForm.value.projName || this.proj.projName;
     this.proj.projDescription= this.popupForm.value.projDescription || this.proj.projDescription;

@@ -31,23 +31,22 @@ export class SpokenLanguagesComponent<T> implements OnInit {
         this.editMode= data;
       })
 
-      this.langListBindingService.dataEmitter.subscribe((data: Array<SpokenLanguage>)=>{
-        this.langList= Object.values(data);
-        this.ngOnInit();
-      })
     }
 
   ngOnInit(): void {
     this.dataService.getAll<any>(this.endPoint).subscribe(response => {
       if(response.statusCode == "OK"){
-        let list: Array<SpokenLanguage>= Object.values(response.body);
-        this.langList = list;
+        this.langList = Object.values(response.body);
         if(Array.isArray(this.langList)){
           this.langList.sort((a: SpokenLanguage, b: SpokenLanguage): number => a.languageIndex - b.languageIndex);
         }
       }else{
         window.alert(`Error: ${response.statusCode}`);
       }
+      })
+
+      this.langListBindingService.dataEmitter.subscribe((data: Array<SpokenLanguage>)=>{
+        this.langList= data;
       })
   }
 

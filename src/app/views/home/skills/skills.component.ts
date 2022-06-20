@@ -26,6 +26,7 @@ export class SkillsComponent<T> implements OnInit {
     private skillBindingService: SkillBindingService<Skill>,
     private skillListBindingService: SkillListBindingService<Array<Skill>>
     ) {
+
       this.modeBindingService.dataEmitter.subscribe((data: boolean) =>{
         this.editMode= data;
       })
@@ -43,13 +44,8 @@ export class SkillsComponent<T> implements OnInit {
         window.alert(`Error: ${response.statusCode}`);
       }
       this.skillListBindingService.dataEmitter.subscribe((data: Array<Skill>)=>{
-        this.skills= Object.values(data);
-        console.log("skill list despues de borrar viene de bak ", this.skills);
-        if(Array.isArray(this.skills)){
-          this.skills.sort((a: Skill,b: Skill): number => a.skillIndex - b.skillIndex);
-        }else{
-        window.alert(`Error: ${response.statusCode}`);
-      }
+        this.skills= data;
+        this.skills.sort((a: Skill,b: Skill): number => a.skillIndex - b.skillIndex);
       })
   });
 }

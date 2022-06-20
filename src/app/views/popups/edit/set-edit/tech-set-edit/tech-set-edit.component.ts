@@ -16,7 +16,6 @@ export class TechSetEditComponent<T> implements OnInit {
 
   private techUpdateEndPoint: string="technology/update/list";
 
-  private list: Array<Technology>=[];
   public techListAll: Array<Technology>=[];
   public techListTrue: Array<Technology>=[];
   public techListFalse: Array<Technology>=[];
@@ -74,18 +73,16 @@ export class TechSetEditComponent<T> implements OnInit {
     this.setForm= this.fb.group({
       setList: this.fb.array([])
     })
-    
-    this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>)=>{
-      this.techListAll= Object.values(data);
-      this.techListAll.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
-      this.techListTrue= this.techListAll.filter(elm => elm.techShow) || [];
-      this.techListFalse= this.techListAll.filter(elm => !elm.techShow) || [];
-      this.ngOnInit();
-    })
 
   }
 
   ngOnInit(): void {
+    this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>)=>{
+      this.techListAll= data;
+      this.techListAll.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+      this.techListTrue= this.techListAll.filter(elm => elm.techShow) || [];
+      this.techListFalse= this.techListAll.filter(elm => !elm.techShow) || [];
+    })
   }
 
   setSubmit(){
@@ -98,9 +95,8 @@ export class TechSetEditComponent<T> implements OnInit {
           }
           this.service.update(this.techUpdateEndPoint, this.techListToSend).subscribe(resp=>{
             if(resp.statusCode == "OK"){
-              this.list= Object.values(resp.body);
-              this.list.sort((a:Technology, b: Technology): number => a.techIndex - b.techIndex);
-              this.techListAll= this.list;
+              this.techListAll = Object.values(resp.body);
+              this.techListAll.sort((a:Technology, b: Technology): number => a.techIndex - b.techIndex);
               this.techListTrue= this.techListAll.filter(elm => elm.techShow) || [];
               this.techListFalse= this.techListAll.filter(elm => !elm.techShow) || [];
               this.techListBinding<Array<Technology>>(this.techListAll);
