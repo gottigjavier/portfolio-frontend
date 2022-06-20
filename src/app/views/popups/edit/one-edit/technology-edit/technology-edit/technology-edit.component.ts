@@ -77,14 +77,13 @@ ngOnInit(): void {
       console.log("tech edit one ", resp);
       if(resp.statusCode == "OK"){
         this.tech = resp.body;
-        this.techBinding<Technology>(this.tech);
-          this.techList.forEach(elem=>{
-            if(elem.techId==this.tech.techId){
-              elem= this.tech;
-              return;
-            }
-            this.techListBinding<Array<Technology>>(this.techList);
-          })
+        this.techList.forEach(elem=>{
+          if(elem.techId==this.tech.techId){
+            elem= this.tech;
+          }
+        })
+        //this.techBinding<Technology>(this.tech);
+        this.techListBinding<Array<Technology>>(this.techList);
         console.log("tech edit techlist  ", this.techList);
         this.closeTPopup();
       }else{

@@ -74,6 +74,7 @@ export class TechnologiesComponent<T> implements OnInit {
         console.log("width  ", window.innerWidth)
         if(Array.isArray(this.techList)){
           this.techListShown = this.techList.filter((elem: Technology) => elem.techShow==true) || [];
+          this.techListBinding<Array<Technology>>(this.techList);
         }
         this.getScreenSize();
       }else{
@@ -81,14 +82,13 @@ export class TechnologiesComponent<T> implements OnInit {
       }
     })
 
-    this.techBindingService.dataEmitter.subscribe((data: Technology) => {
+    /* this.techBindingService.dataEmitter.subscribe((data: Technology) => {
       this.techList.forEach(elem => {
         if(elem.techId==data.techId){
           elem= data;
-          return
           }
         })
-      })
+      }) */
 
     this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>) => {
       this.techList= data;

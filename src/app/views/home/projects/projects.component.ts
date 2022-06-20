@@ -21,7 +21,7 @@ export class ProjectsComponent<T> implements OnInit {
   public projListShown: Array<MyProject> = [];
   public projListTechShown: Array<MyProject> = [];
   private projEndPoint: string = "my-project/list";
-  private techEndPoint: string = "technology/list";
+  private projUpdateEndPoint: string="my-project/update/list";
   public techListShown: Array<Technology> = [];
   private proj: MyProject={
     projId:0,
@@ -67,48 +67,78 @@ export class ProjectsComponent<T> implements OnInit {
     })
 
     this.projBindingService.dataEmitter.subscribe((data: MyProject) => {
-      this.projList.forEach(proj => {
-        if (data.projId==proj.projId) {
-          proj = data;
-        }
+      if(data){
+          this.projList.forEach(async proj => {
+            if (data.projId==proj.projId) {
+            proj = data;
+          }
+        })
+        this.projList.forEach(elem=>{
+          elem.techList.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+        })
+        this.projListBinding<Array<MyProject>>(this.projList);
+        this.projListShown= this.projList.filter((elem: MyProject) => elem.projShow) || [];
+        this.projList.forEach(elem=>{
+          elem.techList.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+        })
+      }
+    })
+
+    this.projListBindingService.dataEmitter.subscribe((data: Array<MyProject>)=>{
+      if(data){ 
+        this.projList= data;
+        this.projList.sort((a: MyProject, b: MyProject): number => a.projIndex - b.projIndex);
         this.projListShown= this.projList.filter((elem: MyProject) => elem.projShow==true) || [];
         this.projList.forEach(elem=>{
           elem.techList.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
         })
+      }
       })
-    })
-
-    this.projListBindingService.dataEmitter.subscribe((data: Array<MyProject>)=>{
-      this.projList= data;
-      this.projList.sort((a: MyProject, b: MyProject): number => a.projIndex - b.projIndex);
-        this.projListShown= this.projList.filter((elem: MyProject) => elem.projShow==true) || [];
-    })
-
-    // Si cambia una tech o la lista de tech visibles se reflejará en la lista de techs de cada proj
-    // No es una solución elegante pero por ahora funciona.
+      
+      // Si cambia una tech o la lista de tech visibles se reflejará en la lista de techs de cada proj
+      // No es una solución elegante pero por ahora funciona.
     this.techListBindingService.dataEmitter.subscribe((data: Array<Technology>)=>{
       if(data){
-        this.techListShown= data.filter(elem => elem.techShow==true) || [];
-        this.techListShown.forEach(techShown=>{
-          this.projListShown.forEach(proj => {
-            proj.techList.filter(elem=> elem.techShow==true) || []; //Si saco una tech con set list
-            let tl: Array<Technology>=[]
-            proj.techList.forEach(tech => {
+        this.techListShown= data.filter(elem => elem.techShow) || [];
+        let currentProjList: Array<MyProject>= this.projListShown;
+        console.log("proj techListShown ", this.techListShown);
+        currentProjList.forEach(proj => {
+          let newTechList: Array<Technology>=[]
+          //proj.techList.filter(elem=> elem.techShow) || []; //Si saco una tech con set list
+          proj.techList.forEach(tech => {
+            this.techListShown.forEach(techShown=>{
               if (tech.techId == techShown.techId) {
-                tech = techShown;
+                newTechList.push(techShown)
               }
-              tl.push(tech)
-              proj.techList= tl;
             });
           })
-      })
-    }
+          console.log("proj dnewtec ", newTechList);
+          proj.techList= newTechList;
+          proj.techList.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+          return proj.techList;
+        })
+        this.projListShown = currentProjList;
+        // Debo guardar los cambios en las listas tech de los proyectos
+        // Tal vez sea optimo hacerlo en tech-set-edit
+        this.dataService.update(this.projUpdateEndPoint, this.projList).subscribe(resp=>{
+          if(resp.statusCodeValue == 200){
+            this.projList= resp.body;
+            this.projList.sort((a: MyProject, b: MyProject): number => a.projIndex - b.projIndex);
+            this.projList.forEach(elem=>{
+              elem.techList.sort((a: Technology, b: Technology): number => a.techIndex - b.techIndex);
+            })
+            this.projListBinding<Array<MyProject>>(this.projList);
+          }else{
+            window.alert(`Error: ${resp.statusCode}`);
+          }
+        })
+      }
     })
   };
 
   
   openEditOneProj(i: number) {
-    this.proj= this.projList.find(elem=> elem.projId== i) || this.proj;
+    this.proj= this.projListShown.find(elem=> elem.projId== i) || this.proj;
     this.projBinding<MyProject>(this.proj);
     this.projTechListBinding<Array<Technology>>(this.techListShown);
     $("#editProj").modal("show");

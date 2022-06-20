@@ -42,7 +42,7 @@ export class TechSetEditComponent<T> implements OnInit {
       this.tech.techShow= false;
       this.techListTrue= this.techListTrue.filter(elem => elem.techId != this.tech.techId) || [];
       this.techListFalse.push(this.tech); 
-    }else{
+    }else if(!this.tech.techShow){
       this.tech.techShow= true;
       this.techListFalse= this.techListFalse.filter(elem => elem.techId != this.tech.techId) || [];
       this.techListTrue.push(this.tech); 
@@ -96,10 +96,11 @@ export class TechSetEditComponent<T> implements OnInit {
           this.service.update(this.techUpdateEndPoint, this.techListToSend).subscribe(resp=>{
             if(resp.statusCode == "OK"){
               this.techListAll = Object.values(resp.body);
-              this.techListAll.sort((a:Technology, b: Technology): number => a.techIndex - b.techIndex);
-              this.techListTrue= this.techListAll.filter(elm => elm.techShow) || [];
-              this.techListFalse= this.techListAll.filter(elm => !elm.techShow) || [];
               this.techListBinding<Array<Technology>>(this.techListAll);
+              /* this.techListAll.sort((a:Technology, b: Technology): number => a.techIndex - b.techIndex);
+              this.techListTrue= this.techListAll.filter(elm => elm.techShow) || [];
+              this.techListFalse= this.techListAll.filter(elm => !elm.techShow) || []; */
+              //this.ngOnInit();
               this.closePopup();
             }else{
               window.alert(`Error: ${resp.statusCode}`);
