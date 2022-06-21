@@ -15,6 +15,7 @@ declare var $ : any;
 export class ExperienceComponent<T> implements OnInit {
 
   public jobList: Array<JobExperience>=[];
+  public jobShownList: Array<JobExperience>=[];
 
   private endPoint: string= "job-experience/list";
 
@@ -38,7 +39,8 @@ export class ExperienceComponent<T> implements OnInit {
         let list: Array<JobExperience>= Object.values(response.body);
         this.jobList = list;
         if(Array.isArray(this.jobList)){
-          this.jobList.sort((a: JobExperience, b: JobExperience): number => a.jobIndex - b.jobIndex);
+          this.jobShownList= this.jobList.filter(elem => elem.jobShow) || [];
+          this.jobShownList.sort((a: JobExperience, b: JobExperience): number => a.jobIndex - b.jobIndex);
         }
       }else{
         window.alert(`Error: ${response.statusCode}`);
@@ -48,7 +50,8 @@ export class ExperienceComponent<T> implements OnInit {
       this.jobListBindingService.dataEmitter.subscribe((data: Array<JobExperience>) =>{
         this.jobList= data;
         if(Array.isArray(this.jobList)){
-          this.jobList.sort((a: JobExperience, b: JobExperience): number => a.jobIndex - b.jobIndex);
+          this.jobShownList= this.jobList.filter(elem => elem.jobShow) || [];
+          this.jobShownList.sort((a: JobExperience, b: JobExperience): number => a.jobIndex - b.jobIndex);
         }
       })
   }
@@ -63,7 +66,8 @@ export class ExperienceComponent<T> implements OnInit {
   }
   
   openEditJobSet(){
-
+    this.jobListBinding<Array<JobExperience>>(this.jobList);
+    $("#editJobSet").modal("show");
   }
 
   openDeleteJob(){
