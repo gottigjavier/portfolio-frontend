@@ -16,6 +16,7 @@ declare var $: any;
 export class ProjectEditComponent<T> implements OnInit{
   
   public proj: MyProject;
+  public projReset: MyProject;
 
   private techSetChanged: Set<number> = new Set<number>();
   public techListAll: Array<Technology> = [];
@@ -58,7 +59,7 @@ export class ProjectEditComponent<T> implements OnInit{
     private projBindingService: ProjBindingService<MyProject>,
     private projTechListBindingService: ProjTechListBindingService<Array<Technology>>
   ) {
-    this.proj = {
+    this.projReset = {
       projId: 0,
       projName: '',
       projDescription: '',
@@ -67,6 +68,8 @@ export class ProjectEditComponent<T> implements OnInit{
       projShow: true,
       projIndex: 99,
     };
+
+    this.proj= this.projReset;
 
     this.popupForm = this.fb.group({ techFormArray: this.fb.array([]) });
     this.techFormArray = this.popupForm.get('setFormArray') as FormArray;
@@ -86,6 +89,7 @@ export class ProjectEditComponent<T> implements OnInit{
   } //end constructor
 
   ngOnInit(): void {
+    this.proj= this.projReset;
     this.projBindingService.dataEmitter.subscribe((data: MyProject) => {
       this.proj = data;
     });
@@ -93,10 +97,9 @@ export class ProjectEditComponent<T> implements OnInit{
     // to create the grid with used and unused techs for the project
     this.projTechListBindingService.dataEmitter.subscribe((data: Array<Technology>) => {
       this.techListShown = data || [];
-      if(this.proj.techList.length>0){
-        this.techListTrue = this.proj.techList.filter((elem: Technology) => elem.techShow==true) || [];
-      }
       this.techListFalse= this.techListShown || [];
+      this.techListTrue = this.proj.techList.filter((elem: Technology) => elem.techShow==true) || [];
+      
       for(let techFalse of this.techListFalse){
         for(let techTrue of this.techListTrue){
           if(techFalse.techId==techTrue.techId){
