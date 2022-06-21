@@ -76,7 +76,8 @@ export class EducationComponent<T> implements OnInit {
   }
 
   openEditSetEdu(){
-    
+    this.eduListBinding<Array<Education>>(this.eduList);
+    $("#editEduSet").modal("show");
   }
   
   eduBinding<T>(data: T){

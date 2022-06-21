@@ -97,10 +97,6 @@ export class TechSetEditComponent<T> implements OnInit {
             if(resp.statusCode == "OK"){
               this.techListAll = Object.values(resp.body);
               this.techListBinding<Array<Technology>>(this.techListAll);
-              /* this.techListAll.sort((a:Technology, b: Technology): number => a.techIndex - b.techIndex);
-              this.techListTrue= this.techListAll.filter(elm => elm.techShow) || [];
-              this.techListFalse= this.techListAll.filter(elm => !elm.techShow) || []; */
-              //this.ngOnInit();
               this.closePopup();
             }else{
               window.alert(`Error: ${resp.statusCode}`);
@@ -112,7 +108,6 @@ export class TechSetEditComponent<T> implements OnInit {
     
     
     closePopup(){
-    //this.techListBinding<Array<Technology>>(this.techListAll);
     $("#editTechSet").modal("hide");
   }
 
