@@ -107,12 +107,10 @@ export class ProjSetEditComponent<T> implements OnInit {
               window.alert(`Edit Project Set says: ${resp}`);
             }
           })
-      //this.closePopup();
     }
 
 
   closePopup(){
-    //this.projListBinding<Array<MyProject>>(this.projListAll);
     $("#editProjSet").modal("hide");
   }
 

@@ -76,6 +76,7 @@ export class LangCreateComponent<T> implements OnInit{
       if(resp){
         this.LangList = Object.values(resp);
         this.langListBinding<Array<SpokenLanguage>>(this.LangList); // from db
+        this.popupForm.reset();
       }else{
         window.alert(`Create Spoken Language says: ${resp}`);
       }
@@ -83,7 +84,6 @@ export class LangCreateComponent<T> implements OnInit{
   }
   
       closePopup(){
-        this.popupForm.reset();
     $("#newLang").modal("hide");
   }
 

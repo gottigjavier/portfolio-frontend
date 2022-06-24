@@ -70,6 +70,7 @@ export class AboutDeleteComponent<T> implements OnInit {
               this.aboutToDelete= this.aboutReset;
               this.aboutList= Object.values(resp);
               this.aboutListBinding<Array<About>>(this.aboutList);
+              this.deleteForm.reset();
             }else{
               window.alert(`Delete About says: ${resp}`);
             }
@@ -79,7 +80,6 @@ export class AboutDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.deleteForm.reset();
     $("#deleteAbout").modal("hide");
   }
 

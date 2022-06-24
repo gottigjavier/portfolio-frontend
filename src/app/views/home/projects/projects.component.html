@@ -40,19 +40,19 @@
           <div class="row">
             <div class="d-flex container">
               <div class="tech-cont col-4">
-                <p id="projcT{{ i }}">
+                <p id="projcT{{ i }}" class="par-bold">
                   <b class="items-title">Project: </b>
                   <span class="proj-name">
-                    {{ proj.projName }}
+                    "{{ proj.projName }}"
                   </span>
                 </p>
-                <p id="projcD{{ i }}">
+                <p id="projcD{{ i }}"  class="par-blod">
                   <b class="items-title">Description: </b>
                   <span class="items-text">
-                    {{ proj.projDescription }}
+                    <i>{{ proj.projDescription }}</i>
                   </span>
                 </p>
-                <p id="projcR{{ i }}">
+                <p id="projcR{{ i }}" class="par-bold">
                   <b class="items-title">Repository: </b>
                   <span>
                     <a id="projcUrl{{ i }}" href="{{ proj.projUrl }}" target="_blank">
@@ -61,7 +61,7 @@
                     </a>
                     ..
                   </span>
-                  <small> (*click on the image to visit the site)</small>
+                  <small class="small"> (*click on the image to visit the site)</small>
                 </p>
               </div>
               <div class="col-8">

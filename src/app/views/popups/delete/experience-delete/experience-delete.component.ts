@@ -70,6 +70,7 @@ export class ExperienceDeleteComponent<T> implements OnInit {
               this.jobList.length=0;
               this.jobList= Object.values(resp);
               this.jobListBinding<Array<JobExperience>>(this.jobList);
+              this.deleteForm.reset();
             }else{
               window.alert(`Delete Job Experience says: ${resp}`);
             }
@@ -79,7 +80,6 @@ export class ExperienceDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.deleteForm.reset();
     $("#deleteJob").modal("hide");
   }
 

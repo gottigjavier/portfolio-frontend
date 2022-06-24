@@ -83,6 +83,7 @@ ngOnInit(): void {
           }
         })
         this.techListBinding<Array<Technology>>(this.techList);
+        //this.popupForm.reset();
       }else{
         window.alert(`Edit Technology says: ${resp}`);
       }
@@ -90,8 +91,6 @@ ngOnInit(): void {
   }
 
   closeTPopup(){
-    //this.techListBinding<Array<Technology>>(this.techList);
-    //this.popupForm.reset();
     $("#editTech").modal("hide");
   }
 

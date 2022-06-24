@@ -71,6 +71,7 @@ export class EducationDeleteComponent<T> implements OnInit {
               this.eduList.length=0;
               this.eduList= Object.values(resp.body);
               this.eduListBinding<Array<Education>>(this.eduList);
+              this.deleteForm.reset();
             }else{
               window.alert(`Delete Education says: ${resp}`);
             }
@@ -80,7 +81,6 @@ export class EducationDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.deleteForm.reset();
     $("#deleteEdu").modal("hide");
   }
 

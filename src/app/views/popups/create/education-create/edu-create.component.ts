@@ -76,6 +76,7 @@ export class EduCreateComponent<T> implements OnInit {
       if(resp){
       this.eduList= Object.values(resp);
       this.eduListBinding<Array<Education>>(this.eduList); // From db
+      this.popupForm.reset();
     }else{
       window.alert(`Create Education says: ${resp}`);
     }
@@ -89,7 +90,6 @@ export class EduCreateComponent<T> implements OnInit {
   }
 
   closePopup(){
-    this.popupForm.reset();
     $("#newEdu").modal("hide");
   }
 

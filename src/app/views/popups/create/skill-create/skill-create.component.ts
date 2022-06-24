@@ -72,6 +72,7 @@ export class SkillCreateComponent<T> implements OnInit{
       if(resp){
         this.skillList = Object.values(resp);
         this.skillListBinding<Array<Skill>>(this.skillList); // from db
+        this.popupForm.reset();
       }else{
         window.alert(`Create Skill says: ${resp}`);
       }
@@ -79,7 +80,6 @@ export class SkillCreateComponent<T> implements OnInit{
   }
   
       closePopup(){
-        this.popupForm.reset();
     $("#newSkill").modal("hide");
   }
 

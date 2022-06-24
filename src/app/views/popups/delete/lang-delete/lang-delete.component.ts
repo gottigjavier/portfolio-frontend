@@ -67,6 +67,7 @@ export class LangDeleteComponent<T> implements OnInit {
               this.langList.length=0;
               this.langList= Object.values(resp);
               this.langListBinding<Array<SpokenLanguage>>(this.langList);
+              this.deleteForm.reset();
             }else{
               window.alert(`Delete Spoken Language says: ${resp}`);
             }
@@ -76,7 +77,6 @@ export class LangDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.deleteForm.reset();
     $("#deleteLang").modal("hide");
   }
 

@@ -90,6 +90,7 @@ export class JobCreateComponent<T> implements OnInit{
       if(resp){
         this.jobList= Object.values(resp); // From ResponseEntity
         this.jobListBinding<Array<JobExperience>>(this.jobList); // From db
+        this.popupForm.reset();
       }else{
         window.alert(`Create Job Experience says: ${resp}`);
       }
@@ -97,7 +98,6 @@ export class JobCreateComponent<T> implements OnInit{
   }
   
   closePopup(){
-    this.popupForm.reset();
     $("#newJob").modal("hide");
   }
 

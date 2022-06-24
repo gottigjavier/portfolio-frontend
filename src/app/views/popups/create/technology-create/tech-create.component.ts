@@ -63,6 +63,7 @@ export class TechCreateComponent<T> {
       if(resp){
         this.techList = Object.values(resp);
         this.techListBinding<Array<Technology>>(this.techList); // from db
+        this.popupForm.reset();
       }else{
         window.alert(`Create Technology says: ${resp}`);
       }
@@ -71,7 +72,6 @@ export class TechCreateComponent<T> {
   }
 
   closePopup(){
-    this.popupForm.reset();
     $("#newTech").modal("hide");
   }
 

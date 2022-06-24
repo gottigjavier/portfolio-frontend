@@ -115,6 +115,8 @@ export class ProjCreateComponent<T> implements OnInit{
         this.projList= Object.values(resp);
         this.projListBinding<Array<MyProject>>(this.projList); // from db
         this.projBinding<MyProject>(this.proj);
+        this.techListTrue.length=0;
+        this.popupForm.reset();
       }else{
         window.alert(`Create Project says: ${resp}`);
       }
@@ -122,8 +124,6 @@ export class ProjCreateComponent<T> implements OnInit{
   }
   
   closePopup() {
-    this.techListTrue.length=0;
-    this.popupForm.reset();
     $('#newProj').modal('hide');
   }
 

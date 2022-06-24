@@ -65,6 +65,7 @@ export class AboutCreateComponent<T> implements OnInit{
       if(resp){
         this.aboutList= Object.values(resp); // From ResponseEntity
         this.aboutListBinding<Array<About>>(this.aboutList); // from db
+        this.popupForm.reset();
       }else{
         window.alert(`Create About says: ${resp}`);
       }
@@ -72,7 +73,6 @@ export class AboutCreateComponent<T> implements OnInit{
   }
   
   closePopup(){
-    this.popupForm.reset();
     $("#newAbout").modal("hide");
   }
 

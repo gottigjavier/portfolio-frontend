@@ -122,6 +122,7 @@ export class ProjectEditComponent<T> implements OnInit{
       if(resp){
         this.proj = resp;
         this.projBinding<MyProject>(this.proj);
+        //this.popupForm.reset();
       }else{
         window.alert(`Edit Project says: ${resp}`);
       }
@@ -129,7 +130,6 @@ export class ProjectEditComponent<T> implements OnInit{
   }
   
   closePopup() {
-    //this.popupForm.reset();
     $('#editProj').modal('hide');
   }
 

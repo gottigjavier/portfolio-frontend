@@ -63,6 +63,7 @@ export class SkillDeleteComponent<T> implements OnInit {
             if(resp){
               this.skillList= Object.values(resp);
               this.skillListBinding<Array<Skill>>(this.skillList);
+              this.deleteForm.reset();
             }else{
               window.alert(`Delete Skill says: ${resp}`);
             }
@@ -72,7 +73,6 @@ export class SkillDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.deleteForm.reset();
     $("#deleteSkill").modal("hide");
   }
 

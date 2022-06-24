@@ -65,6 +65,7 @@ export class TechDeleteComponent<T> implements OnInit {
               this.techToDelete=this.emptyTech;
               this.techListAll= resp;
               this.techListBinding<Array<Technology>>(this.techListAll);
+              this.deleteTForm.reset();
             }else{
               window.alert(`Delete Technology says: ${resp}`);
             }
@@ -73,7 +74,6 @@ export class TechDeleteComponent<T> implements OnInit {
       }
       
   closePopup(){
-    this.deleteTForm.reset();
     //this.techListAll.length=0;
     $("#deleteTech").modal("hide");
   }
