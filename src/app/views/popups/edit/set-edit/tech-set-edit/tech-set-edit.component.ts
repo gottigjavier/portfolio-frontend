@@ -97,6 +97,7 @@ export class TechSetEditComponent<T> implements OnInit {
       }
       this.techListBinding<Array<Technology>>(this.techListAll); // Optimistic
     for(let item of this.idTechSetChanged){
+    for(let item of this.idTechSetChanged){
       console.log("item set", item);
       this.techListAll.forEach(sendTech =>{
         if(sendTech.techId==item){
@@ -116,6 +117,7 @@ export class TechSetEditComponent<T> implements OnInit {
             }
           })
     }
+  }
     
     
     closePopup(){
