@@ -24,11 +24,11 @@
             </svg>
           </button>
         </div>
-        <h2 class="tech-title">Technologies</h2>
+        <h2 class="tech-title">Technologies That I Have Used</h2>
+        <hr>
         <div class="grid-container">
           <div *ngFor="let tech of techListShown; index as i">
             <div class="row tech-logo">
-              <div class="">
                 <div class="d-flex justify-content-end" *ngIf='editMode'>
                   <button id='tEdbtn{{tech.techId}}' title="Edit Technology" type="button" class="btn"
                     (click)="openEdit(tech)">
@@ -40,13 +40,14 @@
                   </button>
                 </div>
                 <div class="row">
-                  <img id="techEL{{tech.techId}}" src="{{tech.techIconUrl}}" title="{{tech.techDescription}}"
+                  <img id="techEL{{i}}" src="{{tech.techIconUrl}}" title="{{tech.techDescription}}"
                     alt="Technology Logo" class="">
                 </div>
-              </div>
+              
             </div>
           </div>
         </div>
+        <hr>
       </div>
     </div>
   </div>

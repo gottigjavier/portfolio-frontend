@@ -64,11 +64,12 @@ export class AboutDeleteComponent<T> implements OnInit {
         if(this.aboutToDelete.aboutId<0){
           window.alert("Id mismatch");
         }else{
+          this.closePopup();
           this.dataService.delete(`${this.deleteEndPoint}/${this.aboutToDelete.aboutId}`).subscribe(resp =>{
             if(resp){
+              this.aboutToDelete= this.aboutReset;
               this.aboutList= Object.values(resp);
               this.aboutListBinding<Array<About>>(this.aboutList);
-              this.closePopup();
             }else{
               window.alert(`Delete About says: ${resp}`);
             }
@@ -78,7 +79,6 @@ export class AboutDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.aboutToDelete= this.aboutReset;
     this.deleteForm.reset();
     $("#deleteAbout").modal("hide");
   }

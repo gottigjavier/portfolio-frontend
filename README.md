@@ -2,6 +2,10 @@
 
 ### Self help
 
+### Detalles Generales
+
+En la medida de lo posible se implementa el patrón de diseño Optimistic UI. Esto trata de paliar la lentitud de las respuestas de los servidore, los cuales se utilizan en su versión gratuita. 
+
 #### DataService
 
 Una capa de servicio se diseñó en forma similar a la del backend, es decir, se creó una clase DataService genérica y cada componente le pasa los ednpoints y tipos de datos esperados: Estos tipos de dato se modelaron a través de interfaces en la capa model.

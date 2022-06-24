@@ -58,11 +58,11 @@ export class SkillDeleteComponent<T> implements OnInit {
         if(this.skillToDelete.skillId<0){
           window.alert("Id mismatch");
         }else{
+          this.closePopup();
           this.dataService.delete(`${this.deleteEndPoint}/${this.skillToDelete.skillId}`).subscribe(resp =>{
             if(resp){
               this.skillList= Object.values(resp);
               this.skillListBinding<Array<Skill>>(this.skillList);
-              this.closePopup();
             }else{
               window.alert(`Delete Skill says: ${resp}`);
             }

@@ -57,11 +57,14 @@ export class TechDeleteComponent<T> implements OnInit {
         if(this.techToDelete.techId<0){
           window.alert("Id mismatch");
         }else{
+          this.techListAll.filter(elem => elem.techId != this.techToDelete.techId) || [];
+          this.techListBinding<Array<Technology>>(this.techListAll); // Optimistic
+          this.closePopup();
           this.dataService.delete(`${this.deleteEndPoint}/${this.techToDelete.techId}`).subscribe(resp =>{
             if(resp){
+              this.techToDelete=this.emptyTech;
               this.techListAll= resp;
               this.techListBinding<Array<Technology>>(this.techListAll);
-              this.closePopup();
             }else{
               window.alert(`Delete Technology says: ${resp}`);
             }
@@ -70,7 +73,6 @@ export class TechDeleteComponent<T> implements OnInit {
       }
       
   closePopup(){
-    this.techToDelete=this.emptyTech;
     this.deleteTForm.reset();
     //this.techListAll.length=0;
     $("#deleteTech").modal("hide");

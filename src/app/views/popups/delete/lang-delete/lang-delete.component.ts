@@ -61,11 +61,12 @@ export class LangDeleteComponent<T> implements OnInit {
         if(this.langToDelete.languageId<0){
           window.alert("Id mismatch");
         }else{
+          this.closePopup();
           this.dataService.delete(`${this.deleteEndPoint}/${this.langToDelete.languageId}`).subscribe(resp =>{
             if(resp){
+              this.langList.length=0;
               this.langList= Object.values(resp);
               this.langListBinding<Array<SpokenLanguage>>(this.langList);
-              this.closePopup();
             }else{
               window.alert(`Delete Spoken Language says: ${resp}`);
             }
@@ -75,7 +76,6 @@ export class LangDeleteComponent<T> implements OnInit {
   
 
   closePopup(){
-    this.langList.length=0;
     this.deleteForm.reset();
     $("#deleteLang").modal("hide");
   }

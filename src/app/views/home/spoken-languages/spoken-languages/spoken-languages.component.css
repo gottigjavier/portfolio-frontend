@@ -1,7 +1,8 @@
 .lang-container{
-    background-color: aqua;
+    background-color: rgb(166, 239, 248);
     padding: 3ch;
-    border: solid 1px;
+    border: double 2px;
+    border-radius: 1%;
 }
 
 .lang-title{
@@ -28,7 +29,7 @@
     width:"auto";
     max-height:30px;
     border-radius: 10%;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 .items-text{

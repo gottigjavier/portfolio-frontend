@@ -1,7 +1,8 @@
 .tech-container{
-    background-color: aqua;
+    background-color:rgb(166, 239, 248);
     padding: 3ch;
-    border: solid 1px;
+    border: double 2px;
+    border-radius: 1%;
 }
 
 .tech-title{
@@ -10,20 +11,20 @@
     text-align: center;
 }
 
-.items{
+/* .items{
     padding-top: 2ch;
-}
-
+} */
+/* 
 .items-title{
     font-family:'Times New Roman', Times, serif;
     font-size: 3ch;
     font-weight: 800;
-}
-
+} */
+/* 
 .tech-name{
     padding: 2ch 0ch;
     font-size: 2.5ch;
-}
+} */
 
 .tech-logo{
     border-radius: 10%;
@@ -33,15 +34,16 @@
     min-height: 70px;
     margin: 4ch 0;
     padding: 2ch 0;
+}
 /*     border: 1px solid rgb(255, 60, 0);
  */
-}
 
-.items-text{
+/* .items-text{
     font-size: 2ch;
-}
+} */
 .grid-container {
     display: grid;
+    /* grid-template-columns: auto auto auto auto auto; */
     grid-template-columns: repeat(auto-fill, 15%);
     grid-template-rows: repeat(auto-fill, 10%);
     justify-content: center;

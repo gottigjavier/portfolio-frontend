@@ -1,7 +1,8 @@
 .proj-container {
-    background-color: aqua;
+    background-color: rgb(166, 239, 248);
     padding: 3ch;
-    border: solid 1px;
+    border: double 2px;
+    border-radius: 1%;
 }
 
 .proj {
@@ -52,9 +53,10 @@
 .grid-container {
     display: grid;
     justify-content: center;
-    grid-template-columns: auto auto auto auto; /*Make the grid smaller than the container*/
-    gap: 3px;
-    padding: 3px;
+    grid-template-columns: repeat(auto-fill, 15%);
+    grid-template-rows: repeat(auto-fill, 40%);
+    gap: 1ch 0.5ch;
+    padding: 0;
 }
 
 .tech-title{
@@ -73,12 +75,30 @@
     grid-column: 1 / 2;
 }
  */
+/* 
+ .tech-logo{
+    border-radius: 10%;
+    min-width: 50px;
+    max-width: 6vw;
+    max-height: 2vw;
+    min-height: 30px;
+    margin: 1ch 0;
+    padding: 0.5ch 0;
+    border: 1px solid rgb(255, 60, 0);
+
+}
+ */
+
+/*  .tech-logo-cont{
+    min-width: 45%;
+ }
+ */
 .tech-cont {
     margin: 0 0 1ch 2ch;
     padding: 2ch 0 2ch 2ch;
     border: 1px solid cornsilk;
     border-radius: 1%;
-    background-color: aquamarine;
+    background-color: rgb(127, 253, 211);
 }
 
 .loader {

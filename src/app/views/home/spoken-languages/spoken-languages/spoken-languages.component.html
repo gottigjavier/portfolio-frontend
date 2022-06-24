@@ -24,6 +24,7 @@
         </button>
       </div>
       <h2 class="lang-title">Spoken Languages</h2>
+      <hr>
       <div class="row">
         <div *ngFor="let lang of langShownList; index as i">
           <div id='lang{{i}}'>
@@ -44,17 +45,27 @@
               </a>
             </span>
             <span class="lang-name"> {{lang.languageName}} </span>
-            <small> (*click on the flag to see the certificate.)</small>
+              <small *ngIf="lang.certificationUrl != '#'"> 
+                (*click on the flag to see the certificate.)
+              </small>
             <p id="langLev{{lang.languageId}}">
               <b class="items-title">Level: </b>
               <span class="items-text">
-                <b>{{lang.langLevel}}</b> / {{lang.percentLevel}} %.
+                <b>{{lang.langLevel}}</b>.
               </span>
             </p>
+            <div class="row">
+              <div class="col-6">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="lang.percentLevel + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{lang.percentLevel}}%</div>
+                </div>
+              </div>
+              <div class="col-6"></div>
+            </div>
           </div>
-          <hr>
         </div>
       </div>
+      <hr>
     </div>
   </div>
 </div>

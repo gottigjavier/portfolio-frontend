@@ -117,11 +117,11 @@ export class ProjectEditComponent<T> implements OnInit{
     this.proj.projIndex= this.popupForm.value.projIndex || this.proj.projIndex;
     this.proj.projUrl= this.popupForm.value.projUrl || this.proj.projUrl;
     this.proj.techList = this.techListTrue;
+    this.closePopup();
     this.dataService.update(this.projUpdateEndPoint, this.proj).subscribe((resp) => {
       if(resp){
         this.proj = resp;
         this.projBinding<MyProject>(this.proj);
-        this.closePopup();
       }else{
         window.alert(`Edit Project says: ${resp}`);
       }
