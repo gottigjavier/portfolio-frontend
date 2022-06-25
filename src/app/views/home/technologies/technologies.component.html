@@ -4,7 +4,7 @@
 <div *ngIf="loaded; else onLoad">
   <div class="header container-fluid">
     <div (window:resize)="getScreenSize($event)">
-      <div class="tech-container">
+      <div class="tech-container shdw">
         <div class="d-flex justify-content-end" *ngIf='editMode'>
           <button id='tbtnAdd' type="button" class="btn" title="Create Technology" (click)="openNewTech()">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 448 512">

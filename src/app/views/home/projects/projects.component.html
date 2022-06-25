@@ -3,7 +3,7 @@
 </ng-template>
 <div *ngIf="loaded; else onLoad">
   <div class="header container-fluid">
-    <div class="proj-container">
+    <div class="proj-container shdw">
       <div class="d-flex justify-content-end" *ngIf="editMode">
         <button id="prbtnAdd" type="button" class="btn" title="New Project" (click)="openNewProj()">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 448 512">
@@ -25,7 +25,7 @@
       </div>
       <h2 class="proj-title">Projects</h2>
       <hr>
-      <div class="proj" *ngFor="let proj of projListShown; index as i">
+      <div class="proj shdw mt-3 pt-3" *ngFor="let proj of projListShown; index as i">
         <div id="projcc{{ proj.projId }}">
           <div class="d-flex justify-content-end pe-3" *ngIf="editMode">
             <button id="projcEbtn{{ i }}" title="Edit Project" type="button" class="btn"

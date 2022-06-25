@@ -1,12 +1,10 @@
 .proj-container {
-    background-color: rgb(166, 239, 248);
+    background-color: lavender;
     padding: 3ch;
-    border: double 2px;
     border-radius: 1%;
 }
 
 .proj {
-    border: solid 2px;
     border-radius: 1%;
 }
 
@@ -147,10 +145,11 @@
 }
 
 .loader {
-    background-color: blue;
+    background-color: gray;
+    opacity: 0.6;
     margin: 40px auto;
     border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
+    border-top: 16px solid gray;
     border-radius: 50%;
     width: 100px;
     height: 100px;
