@@ -39,7 +39,7 @@
           </div>
           <div class="row">
             <div class="d-flex container">
-              <div class="tech-cont col-4">
+              <div class="tech-cont col-4 shdw">
                 <p id="projcT{{ i }}" class="par-bold">
                   <b class="items-title">Project: </b>
                   <span class="proj-name">
@@ -73,7 +73,7 @@
                     <div *ngFor="let tech of proj.techList; let j = index">
                       <div *ngIf="tech.techShow">
                         <img id="projctech{{ j }}" src="{{ tech.techIconUrl }}" title="{{ tech.techDescription }}"
-                          alt="Technology Logo" class="proj-logo" />
+                          alt="Technology Logo" class="proj-logo shdw" />
                       </div>
                     </div>
                   </div>

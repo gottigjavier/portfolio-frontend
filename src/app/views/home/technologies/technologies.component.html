@@ -28,8 +28,8 @@
         <hr>
         <div class="grid-container">
           <div *ngFor="let tech of techListShown; index as i">
-            <div class="row tech-logo">
-                <div class="d-flex justify-content-end" *ngIf='editMode'>
+            <div class="row">
+                <div class="d-flex justify-content-end pen" *ngIf='editMode'>
                   <button id='tEdbtn{{tech.techId}}' title="Edit Technology" type="button" class="btn"
                     (click)="openEdit(tech)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -39,11 +39,9 @@
                     </svg>
                   </button>
                 </div>
-                <div class="row">
                   <img id="techEL{{i}}" src="{{tech.techIconUrl}}" title="{{tech.techDescription}}"
-                    alt="Technology Logo" class="">
-                </div>
-              
+                    alt="Technology Logo" class="shdw logo  tech-logo">
+                
             </div>
           </div>
         </div>

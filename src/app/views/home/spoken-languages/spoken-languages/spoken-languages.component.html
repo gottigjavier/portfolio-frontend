@@ -27,7 +27,7 @@
       <hr>
       <div class="row">
         <div *ngFor="let lang of langShownList; index as i">
-          <div id='lang{{i}}'>
+          <div id='lang{{i}}' class="shdw">
             <div class="d-flex justify-content-end pe-3" *ngIf='editMode'>
               <button id='lEbntn{{lang.languageId}}' title="Edit Language" type="button" class="btn"
                 (click)="openEditOne(i)">
@@ -38,8 +38,9 @@
                 </svg>
               </button>
             </div>
-            <b class="items-title">Language: </b>
-            <span>
+            <div class="lang-items">
+              <b class="items-title">Language: </b>
+              <span>
               <a id="langcert{{lang.languageId}}" href="{{lang.certificationUrl}}" target="_blank">
                 <img id="langurl{{lang.languageId}}" src="{{lang.langFlagUrl}}" alt="Language Logo" class="lang-logo">
               </a>
@@ -61,6 +62,7 @@
                 </div>
               </div>
               <div class="col-6"></div>
+            </div>
             </div>
           </div>
         </div>
