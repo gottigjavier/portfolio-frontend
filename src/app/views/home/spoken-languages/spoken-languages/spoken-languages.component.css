@@ -2,6 +2,7 @@
     background-color: lavender;
     padding: 3ch;
     border-radius: 1%;
+    margin-bottom: 2vw;
 }
 
 .lang-title{
@@ -12,6 +13,8 @@
 
 .items{
     padding-top: 2ch;
+    background-color: rgb(168, 201, 190);
+    margin-bottom: 1vw;
 }
 
 .lang-items{

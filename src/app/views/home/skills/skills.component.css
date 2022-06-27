@@ -2,6 +2,7 @@
     background-color: lavender;
     padding: 3ch;
     border-radius: 1%;
+    margin-bottom: 2vw;
 }
 
 .skill-title{
@@ -13,6 +14,7 @@
 .items{
     padding: 2vw;
     border-radius: 1%;
+    background-color: rgb(168, 201, 190);
 }
 
 .items-title{

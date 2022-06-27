@@ -2,6 +2,7 @@
     background-color: lavender;
     padding: 3ch;
     border-radius: 1%;
+    margin-bottom: 2vw;
 }
 
 .proj {
@@ -102,9 +103,8 @@
 .tech-cont {
     margin: 1ch 0 1ch 2ch;
     padding: 2ch 0 2ch 2ch;
-    border: 1px solid cornsilk;
     border-radius: 1%;
-    background-color: rgb(127, 253, 211);
+    background-color: rgb(168, 201, 190);
 }
 
 

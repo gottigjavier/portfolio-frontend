@@ -74,10 +74,15 @@
             </p>
             <p id="eduapp{{edu.educationId}}">
               <b class="items-title">Approved Percentage: </b>
-              <span class="inst-name">
-                {{edu.approvedLevel}} %;
-              </span>
             </p>
+            <div class="row">
+              <div class="col-6">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-prinary" role="progressbar" [style.width]="edu.approvedLevel + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{edu.approvedLevel}}%</div>
+                </div>
+              </div>
+              <div class="col-6"></div>
+            </div>
             <hr>
           </div>
         </div>
