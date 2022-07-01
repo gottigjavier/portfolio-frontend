@@ -58,7 +58,7 @@ export class SpokenLanguagesComponent<T> implements OnInit {
   }
 
 openEditOne(i: number){
-  this.langBinding<SpokenLanguage>(this.langList[i]);
+  this.langBinding<SpokenLanguage>(this.langShownList[i]);
   $("#editLang").modal("show");
 }
 

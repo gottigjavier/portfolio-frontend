@@ -25,7 +25,7 @@ export class EducationEditComponent<T> implements OnInit{
       educationType: "",
       educationStart: "",
       educationEnd: "",
-      approvedLevel: 30,
+      approvedLevel: 100,
       eduIndex: 0
   });
 
@@ -40,7 +40,7 @@ export class EducationEditComponent<T> implements OnInit{
       educationType: "",
       educationStart: "",
       educationEnd: "",
-      approvedLevel: 30,
+      approvedLevel: 100,
       institutionName: "",
       institutionLink: "",
       institutionLogo: "",

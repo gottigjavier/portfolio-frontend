@@ -58,7 +58,7 @@ export class SkillsComponent<T> implements OnInit {
 }
 
 openEditOne(i: number){
-  this.skillBinding<Skill>(this.skills[i]);
+  this.skillBinding<Skill>(this.shownSkills[i]);
   $("#editSkill").modal("show");
 }
 

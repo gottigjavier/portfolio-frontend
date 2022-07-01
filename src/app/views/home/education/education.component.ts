@@ -62,7 +62,7 @@ export class EducationComponent<T> implements OnInit {
   }
 
   openEditOne(i: number){
-    this.eduBinding<Education>(this.eduList[i]);
+    this.eduBinding<Education>(this.eduListShown[i]);
     $("#editEdu").modal("show");
   }
 

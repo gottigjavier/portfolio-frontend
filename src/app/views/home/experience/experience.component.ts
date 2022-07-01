@@ -59,7 +59,7 @@ export class ExperienceComponent<T> implements OnInit {
   }
 
   openEditOne(i: number){
-    this.jobBinding<JobExperience>(this.jobList[i]);
+    this.jobBinding<JobExperience>(this.jobShownList[i]);
     $("#editJob").modal("show");
   }
 
