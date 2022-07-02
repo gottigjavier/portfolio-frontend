@@ -1,5 +1,6 @@
 <ng-template #onLoad>
   <div class="loader"></div>
+  <p class="wait">{{waiting}}</p>
 </ng-template>
 <div *ngIf="loaded; else onLoad">
   <div class="header container-fluid">
@@ -73,7 +74,7 @@
                     <div *ngFor="let tech of proj.techList; let j = index">
                       <div *ngIf="tech.techShow">
                         <img id="projctech{{ j }}" src="{{ tech.techIconUrl }}" title="{{ tech.techDescription }}"
-                          alt="Technology Logo" class="proj-logo shdw" />
+                          alt="Technology Logo" class="proj-logo shdw my-2" />
                       </div>
                     </div>
                   </div>
