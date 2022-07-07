@@ -49,8 +49,9 @@ export class UserEditComponent<T> {
     this.user={
       userId: 0,
       userName: "",
-      userMail: "",
-      userPassword: ""
+      email: "",
+      password: "",
+      authorities:[]
     }
 
     this.popupBindingService.dataEmitter.subscribe((data: User) =>{
@@ -63,9 +64,9 @@ export class UserEditComponent<T> {
 
   onSubmit(){
     this.user.userName= this.popupForm.value.userName || this.user.userName;
-    this.user.userMail= this.popupForm.value.userMail || this.user.userMail;
+    this.user.email= this.popupForm.value.userMail || this.user.email;
     // save repeat password or last password saved
-    this.user.userPassword= this.popupForm.value.userRepeatPassword || this.user.userPassword;
+    this.user.password= this.popupForm.value.userRepeatPassword || this.user.password;
     this.service.update(this.endPoint, this.user).subscribe(resp =>{
       if(!resp){
         alert("Error: Not saved")
