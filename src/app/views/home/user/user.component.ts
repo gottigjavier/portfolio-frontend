@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserName } from 'src/app/models/user-name.model';
 import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/auth-sevices/login.service';
 import { PopupBindingService } from 'src/app/services/binding-services/popup-binding.service';
+import { UserBindingService } from 'src/app/services/binding-services/user-binging.service';
+import { UserListBindingService } from 'src/app/services/binding-services/user-list-binding.service';
 import { DataService } from 'src/app/services/data-services/data.service';
 
 declare var $ : any;
@@ -16,16 +19,19 @@ export class UserComponent<T> implements OnInit {
   
     
     public user: User;
-    public userList: Array<User>=[];
-    private endPoint: string= "user/list";
-    public userRoleUser: string="";
-    public userRoleAdmin: string="";
+    private userName: UserName= {
+      userName: ""
+    };
+    public userList: Array<UserName>=[];
+    private endPoint: string= "userlist";
+    public userRoleUser: boolean=false;
+    public userRoleAdmin: boolean=false;
     
   
     constructor(
-      private dataService: DataService<T>,
-      private popupBindingService: PopupBindingService<User>,
       private loginService: LoginService,
+      private userBindingService: UserBindingService<User>,
+      private userListBindingService: UserListBindingService<Array<UserName>>,
       private routes: Router
     ) {
       this.user={
@@ -45,18 +51,28 @@ export class UserComponent<T> implements OnInit {
         this.user= this.loginService.authenticatedUser;
         console.log("user on user component ", this.user);
         if(this.loginService.authenticatedUser.authorities.length>0){
-          this.userRoleUser= this.loginService.authenticatedUser.authorities[0].authority;
+          this.userRoleUser= true;
         }
         if(this.loginService.authenticatedUser.authorities.length>1){
-          this.userRoleAdmin= this.loginService.authenticatedUser.authorities[1].authority;
+          this.userRoleAdmin= true;
         }
       }
+      this.loginService.getAll(this.endPoint).subscribe(resp =>{
+        this.userList= resp;
+        
+      })
+      this.userListBindingService.dataEmitter.subscribe((data:Array<UserName>)=>{
+        this.userList= data;
+      })
+
+      console.log("user component ", this.user);
       console.log("roleuser on user component ", this.userRoleUser);
       console.log("roleadmin on user component ", this.userRoleAdmin);
     }
 
     changePass(){
-      
+      this.userBinding<User>(this.user);
+      $("#changePass").modal("show");
     }
 
     createUser(){
@@ -64,7 +80,8 @@ export class UserComponent<T> implements OnInit {
     }
 
     deleteUser(){
-      
+      this.userListBinding<Array<UserName>>(this.userList);
+      $("#deleteUser").modal("show");
     }
 
     onClose(){
@@ -72,12 +89,16 @@ export class UserComponent<T> implements OnInit {
     }
   
     openEdit(){
-      this.popupBinding<User>(this.user);
+      this.userBinding<User>(this.user);
       $("#editUser").modal("show");
     }
     
-    popupBinding<T>(data: T){
-      this.popupBindingService.setData<T>(data);
+    userBinding<T>(data: T){
+      this.userBindingService.setData<T>(data);
+    }
+
+    userListBinding<T>(data: T){
+      this.userListBindingService.setData<T>(data);
     }
   
   

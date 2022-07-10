@@ -4,6 +4,8 @@ import { UserComponent } from './user.component';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserCreateModule } from './user-create/user-create.module';
+import { UserEditModule } from './user-edit/user-edit.module';
+import { UserDeleteModule } from './user-delete/user-delete.module';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { UserCreateModule } from './user-create/user-create.module';
     CommonModule,
     MatCardModule,
     UserCreateModule,
+    UserEditModule,
+    UserDeleteModule,
     SharedModule
   ],
   exports: [

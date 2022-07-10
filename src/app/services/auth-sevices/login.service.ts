@@ -42,6 +42,18 @@ export class LoginService {
     return this.http.post(`${this.urlAuth}/${endPoint}`, data)
   }
 
+  public changePass(data: any, endPoint: string): Observable<any>{
+    return this.http.put(`${this.urlAuth}/${endPoint}`, data)
+  }
+
+  public getAll(endPoint: string): Observable<any>{
+    return this.http.get(`${this.urlAuth}/${endPoint}`)
+  }
+
+  public delUser(data: any, endPoint: string): Observable<any>{
+    return this.http.post(`${this.urlAuth}/${endPoint}`, data)
+  }
+
   public logout() {
     // remove user from local storage to log user out
     sessionStorage.removeItem('currentUser');

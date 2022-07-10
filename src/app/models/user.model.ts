@@ -1,7 +1,7 @@
 export interface User{
     userId: number,
-    userName: String,
-    email: String,
-    password: String,
+    userName: string,
+    email: string,
+    password: string,
     authorities: Array<any>
 }
