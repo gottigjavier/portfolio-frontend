@@ -60,7 +60,7 @@
     grid-template-columns: repeat(auto-fill, 15%);
     grid-template-rows: repeat(auto-fill, 45%);
     gap: 1vh 0.5vh;
-    padding: 2.5vw;
+    padding: 2.5vw 2.5vw 5.5vw 2.5vw;
 }
 
 .tech-title{
