@@ -9,8 +9,11 @@ El sitio está desplegado en https://gottigportfolio.firebaseapp.com/
 ### Organización de archivos y vistas
 
 El proyecto (single page) tiene tres rutas:
+
 "/"
+
 "/login"
+
 "/user" (protegida)
 
 además de las ventanas emergentes de edición.
