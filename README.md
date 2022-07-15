@@ -23,7 +23,7 @@ La carpeta "app" contiene las carpetas "models", "services", "shared" y "views".
 - La carpeta "models" contiene lo modelos cuya contraparte son las entidades 
 del backend más alguna variante pertinente.
 
- -La carpeta "services" contiene cuatro carpetas. "auth" y "guard" corresponden a
+- La carpeta "services" contiene cuatro carpetas. "auth" y "guard" corresponden a
 servicios de autenticación y autorización. "binding" contiene los servicios
 que tranmiten los datos entre componentes a través de EventEmitter.
 "data" maneja las peticiones http al backend.
@@ -75,18 +75,21 @@ Los íconos para edición se cargan desde [Getbootstrap](https://icons.getbootst
 
 El banner y algunos íconos de escaso tamaño se conservaron en la carpeta "assets".
 
-Gran parte de los íconos e imágenes se las guardó en https://imgur.com y se las trae desde allí.
+Gran parte de los íconos e imágenes se las guardó en [Imgur](https://imgur.com) y se las trae desde allí.
 
 #### Tech. Tamaño de imágenes
 
 (No implementado por el momento)
+
 Al principio se consideró usar el tamaño mostrado de la imagen o logo de las tecnologías que se manejan para representar el nivel de habilidad respecto de cada una. Para ello, el tamaño pasado al html depende del atributo "techLevel". Dado que la vista es responsiva, las imágenes tienen que adaptarse al tamaño de la pantalla. Lo hacen, pero por el momento, el dato del tamaño de la pantalla se fija cuando el navegador hace la carga del sitio. Entonces, si se realizaba una prueba desde la sección para desarrollador del navegador y se iba "jugando" con el tamaño de la pantalla, los logos de las tecnologías mantenían su tamaño a menos que se realizara una recarga del sitio para que tome la nueva dimensión de la pantalla.
 Esta implementación se descartó por dos razones: no mejora la experiencia de usuario y la técnica de mostrar un nivel de desctreza en el manejo de una tecnología no es recomendable ya que es subjetiva y autoreferencial.
 
 #### Sección admin
 
 En la barra de navegación, junto al username del usuario logueado aparece una flecha que dirige a la página de administración del usuario.
+
 (Esta ruta es ruta protegida)
+
 El usuario puede tener dos niveles de privilegios que se definen por ROLE_USER Y ROLE_ADMIN.
 El primero tiene privilegios para editar el portfolio y cambiar su contraseña.
 El segundo, además de los privilegios del primero, puede crear nuevos usuarios decidiendo su nivel de privilegios y eliminar usuarios.
