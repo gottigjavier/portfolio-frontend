@@ -94,7 +94,7 @@ Gran parte de los íconos e imágenes se las guardó en [Imgur](https://imgur.co
 
 Al principio se consideró usar el tamaño mostrado de la imagen o logo de las tecnologías que se manejan para representar el nivel de habilidad respecto de cada una. Para ello, el tamaño pasado al html depende del atributo "techLevel". Dado que la vista es responsiva, las imágenes tienen que adaptarse al tamaño de la pantalla. Lo hacen, pero por el momento, el dato del tamaño de la pantalla se fija cuando el navegador hace la carga del sitio. Entonces, si se realiza una prueba desde la sección para desarrollador del navegador y se va "jugando" con el tamaño de la pantalla, los logos de las tecnologías mantienen su tamaño a menos que se realice una recarga del sitio para que tome la nueva dimensión de la pantalla.
 
-Esta implementación se descartó por dos razones: no mejora la experiencia de usuario y la técnica de mostrar un nivel de destreza en el manejo de una tecnología no es recomendable ya que es subjetiva y autoreferencial.
+Esta implementación se descartó por dos razones: no mejora la experiencia de usuario y la técnica de mostrar un nivel no certificado de destreza en el manejo de una tecnología no es recomendable ya que es subjetiva y autoreferencial.
 
 #### Sección admin
 
