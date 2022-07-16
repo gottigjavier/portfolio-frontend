@@ -62,14 +62,16 @@ La carpeta mock-db se creó para simular el backend cuando todavía este no esta
 
 En muchos casos, las ediciones modifican el orden de la lista de objetos renderizados así que al principio se programó para que el backend devuelva la lista de objetos aunque eso no sea buena práctica.
 En el ámbito del localhost esto funcionaba bien. 
+
 Al desplegar a app se encontró que la respuesta de los servidores era demasiado lenta ya que se utilizan en su versión gratuita, por lo que se implementó el patrón de diseño Optimistic UI. Si bien ahora la devolución de la lista de objetos mencionada se vuelve redundante, se decidió conservarla por el momento.
 
 #### DataService
 
 Una capa de servicio se diseñó en forma similar a la del backend, es decir, se creó una clase DataService genérica y cada componente le pasa los ednpoints y tipos de datos esperados. Estos tipos de dato se modelaron a través de interfaces en la capa model.
-Usar una clase genérica puede dificultar los test unitarios.
 
-Para mejor claridad se creó otra clase genérica para manejar la autenticacón de login.
+Usar una clase genérica para los servicios puede dificultar los test unitarios.
+
+Para mejor claridad se creó otro servicio para manejar login e interceptor.
 
 
 #### Modal Form y Bindin Service
@@ -84,13 +86,14 @@ Los íconos para edición se cargan desde [Getbootstrap](https://icons.getbootst
 
 El banner y algunos íconos de escaso tamaño se conservaron en la carpeta "assets".
 
-Gran parte de los íconos e imágenes se las guardó en [Imgur](https://imgur.com) y se las trae desde allí.
+Gran parte de los íconos e imágenes se las guardó en [Imgur](https://imgur.com) y se las importa desde allí.
 
 #### Tech. Tamaño de imágenes
 
 (No implementado por el momento)
 
-Al principio se consideró usar el tamaño mostrado de la imagen o logo de las tecnologías que se manejan para representar el nivel de habilidad respecto de cada una. Para ello, el tamaño pasado al html depende del atributo "techLevel". Dado que la vista es responsiva, las imágenes tienen que adaptarse al tamaño de la pantalla. Lo hacen, pero por el momento, el dato del tamaño de la pantalla se fija cuando el navegador hace la carga del sitio. Entonces, si se realizaba una prueba desde la sección para desarrollador del navegador y se iba "jugando" con el tamaño de la pantalla, los logos de las tecnologías mantenían su tamaño a menos que se realizara una recarga del sitio para que tome la nueva dimensión de la pantalla.
+Al principio se consideró usar el tamaño mostrado de la imagen o logo de las tecnologías que se manejan para representar el nivel de habilidad respecto de cada una. Para ello, el tamaño pasado al html depende del atributo "techLevel". Dado que la vista es responsiva, las imágenes tienen que adaptarse al tamaño de la pantalla. Lo hacen, pero por el momento, el dato del tamaño de la pantalla se fija cuando el navegador hace la carga del sitio. Entonces, si se realiza una prueba desde la sección para desarrollador del navegador y se va "jugando" con el tamaño de la pantalla, los logos de las tecnologías mantienen su tamaño a menos que se realice una recarga del sitio para que tome la nueva dimensión de la pantalla.
+
 Esta implementación se descartó por dos razones: no mejora la experiencia de usuario y la técnica de mostrar un nivel de desctreza en el manejo de una tecnología no es recomendable ya que es subjetiva y autoreferencial.
 
 #### Sección admin
