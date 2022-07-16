@@ -6,6 +6,12 @@
 
 El sitio está desplegado en https://gottigportfolio.firebaseapp.com/
 
+El Portfolio cumple todos los requisitos estipulados en el documento "Pautas y objetivos del Proyecto Integrador" en cuanto al contenido. Si embargo no se ha seguido estricatmente el orden  que se muestra en la guía visual para presentar ese contenido.
+
+Los requisitos no estipulan el idioma del portfolio. Se decidió presentarlo en inglés ya que es el idioma estandar en la industria y la norma de este desarrollador. Los comentarios de los commits así como muchos los comentarios en el código están también en inglés.
+
+Los Readme.md tanto del frontend como del backend y algunos comentarios en el código se han escrito en español solo para facilitar la evaluación.
+
 ### Organización de archivos y vistas
 
 El proyecto (single page) tiene tres rutas:
